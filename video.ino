@@ -31,6 +31,10 @@
 // 08/04/2023:				RC4 + Removed delay in readbyte_t, fixed VDP_SCRCHAR, VDP_SCRPIXEL
 // 12/04/2023:					+ Fixed bug in play_note
 
+// oldpatientsea: personal customisations
+// 07/04/2023:		oldpatientsea: Custom VGA mode SVGA_640x512_60Hz for boards that crash with SVGA_1024x768_60Hz
+
+
 #include "fabgl.h"
 #include "HardwareSerial.h"
 #include "ESP32Time.h"
@@ -41,6 +45,11 @@
 
 #define	DEBUG			0						// Serial Debug Mode: 1 = enable
 #define SERIALKB		0						// Serial Keyboard: 1 = enable (Experimental)
+
+// If your Agon Light cannot support SVGA_1024x768_60Hz set UNSTABLEMODE0 to 1
+// This will replace the default modeline for Mode 0
+#define UNSTABLEMODE0  1           // 1 = board cannot support SVGA_1024x768_60Hz
+#define SVGA_640x512_60Hz "\"640x512@60Hz\" 54 640 664 720 844 512 513 515 533 -HSync -VSync DoubleScan" 
 
 fabgl::PS2Controller		PS2Controller;		// The keyboard class
 fabgl::Canvas *				Canvas;				// The canvas class
@@ -610,7 +619,11 @@ int change_mode(int mode) {
 	if(mode != videoMode) {
 		switch(mode) {
 			case 0:
+			#if UNSTABLEMODE0 == 1 
+				errVal = change_resolution(2, SVGA_640x512_60Hz);
+			#elif UNSTABLEMODE0 == 0 
 				errVal = change_resolution(2, SVGA_1024x768_60Hz);
+			#endif
 				break;
 			case 1:
 				errVal = change_resolution(16, VGA_512x384_60Hz);
