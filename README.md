@@ -1,3 +1,7 @@
+# About this Fork
+
+This is a personal fork of agon-vdp, giving me the opportunity to learn how to use git and github while applying source control to my my own private tweaks for my own personal hardware.  
+
 # agon-vdp
 
 Part of the official Quark firmware for the Agon series of microcomputers

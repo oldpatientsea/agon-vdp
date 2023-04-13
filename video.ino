@@ -628,31 +628,17 @@ int change_mode(int mode) {
 				break;
 			case 1:
 				errVal = change_resolution(16, VGA_512x384_60Hz);
-<<<<<<< HEAD
-                // oldpatientsea: Tweak so works on my Dell Monitor
-                VGAController->shrinkScreen(+2, 0);
-				break;
-			case 2:
-				errVal = change_resolution(64, VGA_320x200_75Hz);
-                // oldpatientsea: Tweak so works on my Dell Monitor
-                VGAController->shrinkScreen(0, +6); 
-				break;
-			case 3:
-				errVal = change_resolution(16, VGA_640x480_60Hz);
-                // oldpatientsea: Tweak so works on my Dell Monitor
-=======
-        // Tweak so works on my Dell Monitor
+        // oldpatientsea: Tweak so works on my Dell Monitor
         VGAController->shrinkScreen(+2, 0);
 				break;
 			case 2:
 				errVal = change_resolution(64, VGA_320x200_75Hz);
-        // Tweak so works on my Dell Monitor
+        // oldpatientsea: Tweak so works on my Dell Monitor
         VGAController->shrinkScreen(0, +6); 
 				break;
 			case 3:
 				errVal = change_resolution(16, VGA_640x480_60Hz);
-        // Tweak so works on my Dell Monitor
->>>>>>> ab0b26e9c325ae84d2b51d34109d9958b13c659d
+				// oldpatientsea: Tweak so works on my Dell Monitor
 				VGAController->shrinkScreen(0, -10);
 				break;
 		}
