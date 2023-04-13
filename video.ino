@@ -33,7 +33,8 @@
 
 // oldpatientsea: personal customisations
 // 07/04/2023:		oldpatientsea: Custom VGA mode SVGA_640x512_60Hz for boards that crash with SVGA_1024x768_60Hz
-
+// 13/04/2023:      oldpatientsea: tweaks for my own hardware
+// 13/04/2023:      oldpatientsea: manually apply coming fix for fails to boot without keyboard
 
 #include "fabgl.h"
 #include "HardwareSerial.h"
@@ -122,15 +123,15 @@ void setup() {
 	pinMode(UART_CTS, INPUT);	
 	setRTSStatus(true);
 	#endif
- 	PS2Controller.begin(PS2Preset::KeyboardPort0, KbdMode::CreateVirtualKeysQueue);
-	PS2Controller.keyboard()->setLayout(&fabgl::UKLayout);
-	PS2Controller.keyboard()->setCodePage(fabgl::CodePages::get(1252));
-	PS2Controller.keyboard()->setTypematicRateAndDelay(kbRepeatRate, kbRepeatDelay);
 	init_audio();
 	copy_font();
   	set_mode(1);
 	boot_screen();
 	wait_eZ80();
+ 	PS2Controller.begin(PS2Preset::KeyboardPort0, KbdMode::CreateVirtualKeysQueue);
+	PS2Controller.keyboard()->setLayout(&fabgl::UKLayout);
+	PS2Controller.keyboard()->setCodePage(fabgl::CodePages::get(1252));
+	PS2Controller.keyboard()->setTypematicRateAndDelay(kbRepeatRate, kbRepeatDelay);
 }
 
 // The main loop
@@ -627,17 +628,17 @@ int change_mode(int mode) {
 				break;
 			case 1:
 				errVal = change_resolution(16, VGA_512x384_60Hz);
-        // Tweak so works on my Dell Monitor
-        VGAController->shrinkScreen(+2, 0);
+                // oldpatientsea: Tweak so works on my Dell Monitor
+                VGAController->shrinkScreen(+2, 0);
 				break;
 			case 2:
 				errVal = change_resolution(64, VGA_320x200_75Hz);
-        // Tweak so works on my Dell Monitor
-        VGAController->shrinkScreen(0, +6); 
+                // oldpatientsea: Tweak so works on my Dell Monitor
+                VGAController->shrinkScreen(0, +6); 
 				break;
 			case 3:
 				errVal = change_resolution(16, VGA_640x480_60Hz);
-        // Tweak so works on my Dell Monitor
+                // oldpatientsea: Tweak so works on my Dell Monitor
 				VGAController->shrinkScreen(0, -10);
 				break;
 		}
