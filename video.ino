@@ -32,9 +32,9 @@
 // 12/04/2023:					+ Fixed bug in play_note
 
 // oldpatientsea: personal customisations
-// 07/04/2023:		oldpatientsea: Custom VGA mode SVGA_640x512_60Hz for boards that crash with SVGA_1024x768_60Hz
-// 13/04/2023:      oldpatientsea: tweaks for my own hardware
-// 13/04/2023:      oldpatientsea: manually apply coming fix for fails to boot without keyboard
+// 07/04/2023:        oldpatientsea: Custom VGA mode SVGA_640x512_60Hz by Igor Chaves Cananea for boards that crash with SVGA_1024x768_60Hz
+// 13/04/2023:        oldpatientsea: tweaks for my own hardware
+// 13/04/2023:        oldpatientsea: manually apply coming fix for fails to boot without keyboard
 
 #include "fabgl.h"
 #include "HardwareSerial.h"
